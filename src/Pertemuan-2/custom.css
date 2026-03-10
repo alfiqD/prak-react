@@ -1,0 +1,120 @@
+/* Import Font Pixel */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root {
+    --mc-gray: #C6C6C6;
+    --mc-dark-gray: #555555;
+    --mc-light-gray: #FFFFFF;
+    --mc-border: #000000;
+    --mc-green: #52FF2E; /* Experience Bar Color */
+}
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    /* Background motif tanah (Dirt Block) */
+    background-color: #31211b;
+    background-image: 
+        linear-gradient(45deg, #443028 25%, transparent 25%), 
+        linear-gradient(-45deg, #443028 25%, transparent 25%), 
+        linear-gradient(45deg, transparent 75%, #443028 75%), 
+        linear-gradient(-45deg, transparent 75%, #443028 75%);
+    background-size: 40px 40px;
+    color: white;
+    padding: 40px;
+    /* Kursor khusus (opsional, gunakan gambar .cur atau .png kecil) */
+    cursor: crosshair; 
+}
+
+/* Container Utama (UI Window) */
+.card {
+    max-width: 650px;
+    margin: auto;
+    background-color: var(--mc-gray);
+    padding: 30px;
+    border: 4px solid var(--mc-border);
+    /* Shadow luar dalam untuk efek 3D pixel */
+    box-shadow: 
+        inset -4px -4px 0px var(--mc-dark-gray), 
+        inset 4px 4px 0px var(--mc-light-gray),
+        10px 10px 0px rgba(0,0,0,0.3);
+}
+
+h1 {
+    color: #FFCC00;
+    font-size: 28px;
+    text-align: center;
+    text-shadow: 4px 4px 0px #3F3200;
+    margin-bottom: 30px;
+    -webkit-text-stroke: 1px black;
+}
+
+/* Gaya Paragraf seperti Chatbox Minecraft */
+p {
+    background: rgba(0, 0, 0, 0.7);
+    color: #AAA; /* Light gray chat color */
+    padding: 15px;
+    border-left: 6px solid var(--mc-green);
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+/* Tombol ala Minecraft (Minecraft Button) */
+button, .btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    background-color: #7A7A7A;
+    border: 4px solid var(--mc-border);
+    box-shadow: 
+        inset -4px -4px 0px #333, 
+        inset 4px 4px 0px #BBB;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #8CA4F1; /* Warna hover tombol menu */
+    box-shadow: 
+        inset -4px -4px 0px #3F4762, 
+        inset 4px 4px 0px #C6D0F5;
+}
+
+button:active {
+    /* Efek saat diklik, shadow terbalik */
+    box-shadow: 
+        inset 4px 4px 0px #333, 
+        inset -4px -4px 0px #BBB;
+    transform: translateY(2px);
+}
+
+/* Horizontal Line (Experience Bar) */
+hr {
+    border: none;
+    height: 12px;
+    background: #1a1a1a;
+    position: relative;
+    margin: 30px 0;
+}
+
+hr::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 70%; /* Progress 70% */
+    background: var(--mc-green);
+    box-shadow: inset 0 2px 0 #89FF70;
+}
+
+small {
+    font-size: 8px;
+    color: #555;
+    text-align: right;
+    display: block;
+    margin-top: 10px;
+}
