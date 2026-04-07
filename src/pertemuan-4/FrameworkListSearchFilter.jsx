@@ -2,22 +2,44 @@ import { useState } from "react";
 import frameworkData from "./framework.json";
 
 export default function FrameworklistSearchFilter() {
-    const [searchTerm, setSearchTerm] = useState("");
-    const [selectedTag, setSelectedTag] = useState("");
+    // const [searchTerm, setSearchTerm] = useState("");
+    // const [selectedTag, setSelectedTag] = useState("");
 
-    // Filter frameworks
-    const filteredFrameworks = frameworkData.filter((framework) => {
-        const matchesSearch = 
-            framework.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            framework.description.toLowerCase().includes(searchTerm.toLowerCase());
-        
-        const matchesTag = selectedTag ? framework.tags.includes(selectedTag) : true;
-        
-        return matchesSearch && matchesTag;
+    const [dataForm, setDataForm] = useState({
+        searchTerm: "",
+        selectedTag: "",
     });
 
-    // Get all unique tags
-    const allTags = [...new Set(frameworkData.flatMap(f => f.tags))];
+    /Inisialisasi Handle perubahan nilai input form/
+    const handleChange = (evt) => {
+        const { name, value } = evt.target;
+        setDataForm({
+            ...dataForm,
+            [name]: value,
+        });
+    };
+
+    const _searchTerm = dataForm.searchTerm.toLowerCase();
+
+    const filteredFrameworks = frameworkData.filter((framework) => {
+        const matchesSearch =
+            framework.name
+                .toLowerCase()
+                .includes(_searchTerm) ||
+            framework.description
+                .toLowerCase()
+                .includes(_searchTerm);
+
+        const matchesTag = dataForm.selectedTag ? framework.tags.includes(dataForm.selectedTag) : true;
+
+        return matchesSearch && matchesTag;
+
+
+    });
+    const allTags = [
+        ...new Set(frameworkData.flatMap((framework) => framework.tags)),
+    ];
+
 
     return (
         <div className="p-8 max-w-4xl mx-auto">
@@ -31,8 +53,8 @@ export default function FrameworklistSearchFilter() {
             <div className="grid md:grid-cols-2 gap-4 mb-8">
                 {/* Search Input */}
                 <input
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
+                    name="searchTerm"
+                    onChange={handleChange}
                     type="text"
                     placeholder="Search frameworks..."
                     className="w-full p-4 border border-gray-300 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -40,8 +62,8 @@ export default function FrameworklistSearchFilter() {
 
                 {/* Filter Dropdown */}
                 <select
-                    value={selectedTag}
-                    onChange={(e) => setSelectedTag(e.target.value)}
+                    name="selectedTag"
+                    onChange={handleChange}
                     className="w-full p-4 border border-gray-300 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                 >
                     <option value="">All Tags</option>
