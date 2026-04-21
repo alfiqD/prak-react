@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import { Route, Routes } from 'react-router-dom';
 import Orders from './pages/Orders';
 import Customers from './pages/Customers';
+import NotFound from './pages/NotFound';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -31,6 +32,7 @@ function App() {
 
           {/* Isi Dashboard di bawah header */}
           <Routes>
+             <Route path="*" element={<NotFound />} />
             <Route path="/" element={<Dashboard />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/customers" element={<Customers />} />
