@@ -4,7 +4,18 @@ import { FaShoppingCart, FaTruck, FaBan, FaDollarSign } from "react-icons/fa";
 export default function Dashboard() {
     return (
         <div id="dashboard-container" className="p-6">
-            <PageHeader />
+            
+            {/* --- BAGIAN INI YANG KITA UBAH --- */}
+            <PageHeader 
+                title="Dashboard" 
+                breadcrumb={["Dashboard"]} 
+            >
+                {/* Tombol Add Report (Opsional) */}
+                <button className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors font-semibold shadow-md">
+                    + Add Report
+                </button>
+            </PageHeader>
+            {/* --------------------------------- */}
 
             <div id="dashboard-grid" className="p-5 grid sm:grid-cols-2 md:grid-cols-4 gap-4">
                 {/* Card Orders */}

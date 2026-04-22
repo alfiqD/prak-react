@@ -1,42 +1,49 @@
-export default function PageHeader() {
+import React from "react";
+
+export default function PageHeader({ title, breadcrumb, children }) {
+    // Memastikan breadcrumb diproses sebagai Array
+    const breadcrumbItems = Array.isArray(breadcrumb)
+        ? breadcrumb
+        : breadcrumb ? [breadcrumb] : [];
+
     return (
-        /* Container utama dengan justify-between agar judul di kiri dan tombol di kanan */
         <div id="pageheader-container" className="flex items-center justify-between p-4">
             
-            {/* Sisi Kiri (Title & Breadcrumb) */}
             <div id="pageheader-left" className="flex flex-col">
                 <span id="pageheader-title" className="text-3xl font-semibold text-gray-800">
-                    Dashboard
+                    {title}
                 </span>
                 
-                {/* Breadcrumb Links Sesuai Gambar */}
-                <div id="breadcrumb-links" className="flex items-center font-medium space-x-2 mt-2 text-sm">
-                    <span className="text-gray-400 cursor-pointer hover:text-green-500">
-                        Home
-                    </span>
-                    <span className="text-gray-400">
-                        /
-                    </span>
-                    <span className="text-gray-400 cursor-pointer hover:text-green-500">
-                        Home Detail
-                    </span>
-                    <span className="text-gray-400">
-                        /
-                    </span>
-                    <span className="text-gray-400 font-normal">
-                        Home Very Detail
-                    </span>
-                </div>
+                {/* Breadcrumb Links Dinamis */}
+                {breadcrumbItems.length > 0 && (
+                    <div id="breadcrumb-links" className="flex items-center space-x-2 mt-2 text-sm">
+                        {breadcrumbItems.map((item, index) => (
+                            <React.Fragment key={index}>
+                                
+                                {/* --- BAGIAN INI YANG KITA UBAH --- */}
+                                <span 
+                                    className={
+                                        index === breadcrumbItems.length - 1 
+                                        ? "text-black font-semibold" // <-- Jika ini kata terakhir, jadikan HITAM PEKAT
+                                        : "text-gray-400 cursor-pointer hover:text-green-500 font-medium" // <-- Jika kata sebelumnya, tetap ABU-ABU
+                                    }
+                                >
+                                    {item}
+                                </span>
+                                {/* --------------------------------- */}
+
+                                {/* Munculkan garis miring "/" selama bukan item terakhir */}
+                                {index < breadcrumbItems.length - 1 && (
+                                    <span className="text-gray-400 font-medium">/</span>
+                                )}
+                            </React.Fragment>
+                        ))}
+                    </div>
+                )}
             </div>
 
-            {/* Action Button (Sisi Kanan) */}
             <div id="action-button">
-                <button 
-                    id="add-button" 
-                    className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors font-semibold"
-                >
-                    + Add Button
-                </button>
+                {children}
             </div>
         </div>
     );

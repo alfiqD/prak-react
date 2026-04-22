@@ -31,5 +31,4 @@
 /* 4. Terapkan Barlow sebagai font default seluruh body */
 @body {
     @apply font-barlow;
-    @apply font-poppins;
 }
