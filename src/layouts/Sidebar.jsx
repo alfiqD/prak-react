@@ -1,8 +1,7 @@
-import { MdDashboard, MdListAlt, MdPeople, MdBarChart, MdAdd } from "react-icons/md";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { MdDashboard, MdListAlt, MdPeople, MdBarChart, MdAdd, MdOutlineErrorOutline } from "react-icons/md";
+import { NavLink, useLocation } from "react-router-dom";
 
 export default function Sidebar() {
-  // Anda bisa mengatur ID-nya secara manual di sini
   const menus = [
     { id: 'menu-1', name: 'Dashboard', path: '/', icon: <MdDashboard className="mr-4 text-xl" /> },
     { id: 'menu-2', name: 'Orders', path: '/orders', icon: <MdListAlt className="mr-4 text-xl" /> },
@@ -13,7 +12,7 @@ export default function Sidebar() {
   const location = useLocation();
 
   return (
-    <div id="sidebar" className="flex min-h-screen w-[360px] flex-col bg-white p-10 shadow-lg">
+    <div id="sidebar" className="flex min-h-screen w-[360px] flex-col bg-white p-10 shadow-lg overflow-y-auto">
       
       {/* Logo Section */}
       <div id="sidebar-logo" className="flex flex-col mb-10">
@@ -25,8 +24,8 @@ export default function Sidebar() {
         </span>
       </div>
 
-      {/* Sidebar Menu */}
-      <div id="sidebar-menu">
+      {/* Sidebar Menu Utama */}
+      <div id="sidebar-menu" className="mb-8">
         <ul id="menu-list" className="space-y-3">
           {menus.map((menu) => {
             const isActive = location.pathname === menu.path;
@@ -34,7 +33,7 @@ export default function Sidebar() {
             return (
               <li key={menu.id}>
                 <NavLink 
-                  id={menu.id} // ID diambil langsung dari objek menu
+                  id={menu.id} 
                   to={menu.path}
                   className={`flex cursor-pointer items-center rounded-xl p-4 font-medium transition-all group ${
                     isActive 
@@ -50,6 +49,84 @@ export default function Sidebar() {
               </li>
             );
           })}
+        </ul>
+      </div>
+
+      {/* --- BAGIAN ERROR PAGES (Sudah Ada 404) --- */}
+      <div id="sidebar-error-pages" className="mb-10">
+        <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4 pl-4">
+          Error Pages
+        </h3>
+        <ul className="space-y-2">
+          
+          {/* Error 400 */}
+          <li>
+            <NavLink
+              to="/400"
+              className={({ isActive }) =>
+                `flex items-center rounded-xl p-3 font-semibold transition-all ${
+                  isActive
+                    ? "bg-[#D1F7D6] text-[#00A36C] border border-[#00A36C] shadow-sm"
+                    : "text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                }`
+              }
+            >
+              <MdOutlineErrorOutline className="mr-3 text-lg" />
+              <span>Error 400</span>
+            </NavLink>
+          </li>
+
+          {/* Error 401 */}
+          <li>
+            <NavLink
+              to="/401"
+              className={({ isActive }) =>
+                `flex items-center rounded-xl p-3 font-semibold transition-all ${
+                  isActive
+                    ? "bg-[#D1F7D6] text-[#00A36C] border border-[#00A36C] shadow-sm"
+                    : "text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                }`
+              }
+            >
+              <MdOutlineErrorOutline className="mr-3 text-lg" />
+              <span>Error 401</span>
+            </NavLink>
+          </li>
+
+          {/* Error 403 */}
+          <li>
+            <NavLink
+              to="/403"
+              className={({ isActive }) =>
+                `flex items-center rounded-xl p-3 font-semibold transition-all ${
+                  isActive
+                    ? "bg-[#D1F7D6] text-[#00A36C] border border-[#00A36C] shadow-sm"
+                    : "text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                }`
+              }
+            >
+              <MdOutlineErrorOutline className="mr-3 text-lg" />
+              <span>Error 403</span>
+            </NavLink>
+          </li>
+
+          {/* --- INI TAMBAHAN ERROR 404 --- */}
+          <li>
+            <NavLink
+              to="/404"
+              className={({ isActive }) =>
+                `flex items-center rounded-xl p-3 font-semibold transition-all ${
+                  isActive
+                    ? "bg-[#D1F7D6] text-[#00A36C] border border-[#00A36C] shadow-sm"
+                    : "text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                }`
+              }
+            >
+              <MdOutlineErrorOutline className="mr-3 text-lg" />
+              <span>Error 404</span>
+            </NavLink>
+          </li>
+
         </ul>
       </div>
 
@@ -74,7 +151,7 @@ export default function Sidebar() {
           Sedap Restaurant Admin Dashboard
         </span>
         <p id="footer-copyright" className="font-light text-gray-400 text-xs mt-1">
-          &copy; 2025 All Right Reserved
+          &copy; 2026 All Right Reserved
         </p>
       </div>
     </div>
