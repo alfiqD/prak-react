@@ -1,17 +1,6 @@
 import { Suspense, useState } from 'react'
 import './assets/tailwind.css'
 import { Route, Routes } from 'react-router-dom';
-
-// import Dashboard from "./pages/Dashboard";
-// import Orders from './pages/Orders';
-// import Customers from './pages/Customers';
-// --- IMPORT HALAMAN ERROR ---
-// import ErrorPage from './pages/ErrorPage'; // Satu-satunya yang kita butuhin buat urusan error
-// import MainLayout from './layouts/MainLayout';
-// import Login from './pages/auth/Login';
-// import Register from './pages/auth/Register';
-// import Forgot from './pages/auth/Forgot';
-// import AuthLayout from './layouts/AuthLayout';
 import React from 'react';
 import Loading from './components/Loading';
 
@@ -24,6 +13,8 @@ const Login = React.lazy(() => import("./pages/auth/Login"))
 const Register = React.lazy(() => import("./pages/auth/Register"))
 const Forgot = React.lazy(() => import("./pages/auth/Forgot"))
 const AuthLayout = React.lazy(() => import("./layouts/AuthLayout"))
+const Products = React.lazy(() => import("./pages/Products"))
+const ProductDetail = React.lazy(() => import("./pages/ProductDetail"))
 
 function App() {
   return (
@@ -34,6 +25,8 @@ function App() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/customers" element={<Customers />} />
+        <Route path="/products" element={<Products/>} />
+        <Route path="/products/:id" element={<ProductDetail />} />
 
         <Route path="/400" element={<ErrorPage errorCode="400" title={<>Oops! <br /> Bad Request!</>} />} />
         <Route path="/401" element={<ErrorPage errorCode="401" title={<>Hold Up! <br /> Unauthorized!</>} />} />
