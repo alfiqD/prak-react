@@ -1,4 +1,4 @@
-import { Suspense, useState } from 'react'
+import { Component, Suspense, useState } from 'react'
 import './assets/tailwind.css'
 import { Route, Routes } from 'react-router-dom';
 import React from 'react';
@@ -15,6 +15,7 @@ const Forgot = React.lazy(() => import("./pages/auth/Forgot"))
 const AuthLayout = React.lazy(() => import("./layouts/AuthLayout"))
 const Products = React.lazy(() => import("./pages/Products"))
 const ProductDetail = React.lazy(() => import("./pages/ProductDetail"))
+const Components = React.lazy(() => import("./pages/Components"))
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/customers" element={<Customers />} />
         <Route path="/products" element={<Products/>} />
         <Route path="/products/:id" element={<ProductDetail />} />
+        <Route path="/components" element={<Components/>} />
 
         <Route path="/400" element={<ErrorPage errorCode="400" title={<>Oops! <br /> Bad Request!</>} />} />
         <Route path="/401" element={<ErrorPage errorCode="401" title={<>Hold Up! <br /> Unauthorized!</>} />} />

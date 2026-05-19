@@ -8,6 +8,7 @@ export default function Sidebar() {
     { id: 'menu-3', name: 'Customers', path: '/customers', icon: <MdPeople className="mr-4 text-xl" /> },
     { id: 'menu-4', name: 'Analytics', path: '/analytics', icon: <MdBarChart className="mr-4 text-xl" /> },
     { id: 'menu-5', name: 'Products', path: '/products', icon: <MdPeople className="mr-4 text-xl" /> },
+    { id: 'menu-6', name: 'Components', path: '/Components', icon: <MdPeople className="mr-4 text-xl" /> },
   ];
 
   const location = useLocation();
