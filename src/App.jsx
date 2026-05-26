@@ -3,6 +3,7 @@ import './assets/tailwind.css'
 import { Route, Routes } from 'react-router-dom';
 import React from 'react';
 import Loading from './components/Loading';
+import FiturXYZ from './pages/FiturXYZ';
 
 const Dashboard = React.lazy(() => import("./pages/Dashboard"))
 const Orders = React.lazy(() => import("./pages/Orders"))
@@ -16,6 +17,7 @@ const AuthLayout = React.lazy(() => import("./layouts/AuthLayout"))
 const Products = React.lazy(() => import("./pages/Products"))
 const ProductDetail = React.lazy(() => import("./pages/ProductDetail"))
 const Components = React.lazy(() => import("./pages/Components"))
+const Fitur = React.lazy(() => import("./pages/FiturXYZ"))
 
 function App() {
   return (
@@ -29,6 +31,7 @@ function App() {
         <Route path="/products" element={<Products/>} />
         <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/components" element={<Components/>} />
+        <Route path="/fiturxyz" element={<FiturXYZ/>} />
 
         <Route path="/400" element={<ErrorPage errorCode="400" title={<>Oops! <br /> Bad Request!</>} />} />
         <Route path="/401" element={<ErrorPage errorCode="401" title={<>Hold Up! <br /> Unauthorized!</>} />} />
